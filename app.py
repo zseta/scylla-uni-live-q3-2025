@@ -1,13 +1,12 @@
 import streamlit as st
 import requests
-import pandas as pd
 
 
 USER_ID = "3b647bc3-e7cd-4f6a-8951-01c93035eeab"
-
+API_URL = "http://localhost:8001"  # Replace with your API URL
 
 def fetch_products():
-    response = requests.get(f"http://localhost:8000/products?limit=10")
+    response = requests.get(f"{API_URL}/products?limit=10")
     if response.status_code == 200:
         return response.json()
     else:
@@ -16,7 +15,7 @@ def fetch_products():
 
 
 def fetch_cart(user_id):
-    response = requests.get(f"http://localhost:8000/cart/{user_id}")
+    response = requests.get(f"{API_URL}/cart/{user_id}")
     if response.status_code == 200:
         return response.json()
     else:
@@ -25,7 +24,7 @@ def fetch_cart(user_id):
 
 
 def fetch_product(product_id):
-    response = requests.get(f"http://localhost:8000/products/{product_id}")
+    response = requests.get(f"{API_URL}/products/{product_id}")
     if response.status_code == 200:
         return response.json()
     else:
@@ -34,7 +33,7 @@ def fetch_product(product_id):
 
 def add_to_cart(user_id, product_id, quantity):
     response = requests.post(
-        f"http://localhost:8000/cart/{user_id}",
+        f"{API_URL}/cart/{user_id}",
         json={"product_id": product_id, "quantity": quantity},
     )
     if response.status_code == 200:
@@ -45,7 +44,7 @@ def add_to_cart(user_id, product_id, quantity):
     
 def remove_from_cart(user_id, product_id, quantity):
     response = requests.delete(
-        f"http://localhost:8000/cart/{user_id}",
+        f"{API_URL}/cart/{user_id}",
         json={"product_id": product_id, "quantity": quantity},
     )
     if response.status_code == 200:
@@ -55,7 +54,7 @@ def remove_from_cart(user_id, product_id, quantity):
         
 def checkout_cart(user_id):
     response = requests.post(
-        f"http://localhost:8000/cart/{user_id}/checkout",
+        f"{API_URL}/cart/{user_id}/checkout",
     )
     if response.status_code == 200:
         return response.json()
