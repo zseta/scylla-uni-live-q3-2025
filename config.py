@@ -1,0 +1,5 @@
+HOST="172.18.0.4"
+USER="scylla"
+PASSWORD=""
+DATACENTER="datacenter1"
+KEYSPACE="ecommerce"
