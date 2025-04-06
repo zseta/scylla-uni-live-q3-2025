@@ -1,4 +1,4 @@
 fastapi==0.115.12
 scylla-driver==3.29.3
-streamlit==1.44.1
+streamlit==1.40.1
 uvicorn==0.34.0
